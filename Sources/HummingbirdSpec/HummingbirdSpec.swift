@@ -50,49 +50,50 @@ public final class HummingbirdSpec {
         self.name = name
         self.app = app
     }
+}
 
-    // MARK: - method & path
- 
+public extension HummingbirdSpec {
+
     /// set the HTTPMethod and request path
-    public func on(_ method: HTTPMethod, _ uri: String) -> Self {
+    func on(_ method: HTTPMethod, _ uri: String) -> Self {
         self.method = method
         self.uri = uri
         return self
     }
     
     ///set the request method to GET and the uri to the given value
-    public func get(_ uri: String) -> Self { on(.GET, uri) }
+    func get(_ uri: String) -> Self { on(.GET, uri) }
     ///set the request method to POST and the uri to the given value
-    public func post(_ uri: String) -> Self { on(.POST, uri) }
+    func post(_ uri: String) -> Self { on(.POST, uri) }
     ///set the request method to PUT and the uri to the given value
-    public func put(_ uri: String) -> Self { on(.PUT, uri) }
+    func put(_ uri: String) -> Self { on(.PUT, uri) }
     ///set the request method to PATCH and the uri to the given value
-    public func patch(_ uri: String) -> Self { on(.PATCH, uri) }
+    func patch(_ uri: String) -> Self { on(.PATCH, uri) }
     ///set the request method to DELETE and the uri to the given value
-    public func delete(_ uri: String) -> Self { on(.DELETE, uri) }
+    func delete(_ uri: String) -> Self { on(.DELETE, uri) }
+}
 
-    // MARK: - request
-
-    ///set a bearer token Authorization header
-    public func bearerToken(_ token: String) -> Self {
-        headers.replaceOrAdd(name: "Authorization", value:  "Bearer \(token)")
-        return self
-    }
-    
+public extension HummingbirdSpec {
     ///set a header value
-    public func header(_ name: String, _ value: String) -> Self {
+    func header(_ name: String, _ value: String) -> Self {
         headers.replaceOrAdd(name: name, value: value)
         return self
     }
     
+    ///set a bearer token Authorization header
+    func bearerToken(_ token: String) -> Self {
+        headers.replaceOrAdd(name: "Authorization", value:  "Bearer \(token)")
+        return self
+    }
+    
     ///set a buffer as the request body
-    public func buffer(_ value: ByteBuffer) -> Self {
+    func buffer(_ value: ByteBuffer) -> Self {
         buffer = value
         return self
     }
 
     ///set a content as the request body
-    public func body<T: Encodable>(
+    func body<T: Encodable>(
         _ body: T,
         encoder: HBTestEncoder? = nil
     ) throws -> Self {
@@ -104,11 +105,11 @@ public final class HummingbirdSpec {
         let data = try encoder.encode(body)
         return buffer(.init(data: data))
     }
+}
 
-    // MARK: - expectations
-
+public extension HummingbirdSpec {
     ///expect a specific HTTPStatus
-    public func expect(
+    func expect(
         file: StaticString = #file,
         line: UInt = #line,
         _ status: HTTPResponseStatus
@@ -120,7 +121,7 @@ public final class HummingbirdSpec {
     }
 
     ///expect a specific header
-    public func expect(
+    func expect(
         file: StaticString = #file,
         line: UInt = #line,
         _ header: String,
@@ -137,7 +138,7 @@ public final class HummingbirdSpec {
     }
 
     ///expect a specific Content-Type header value
-    public func expect(
+    func expect(
         file: StaticString = #file,
         line: UInt = #line,
         _ contentType: String
@@ -151,7 +152,7 @@ public final class HummingbirdSpec {
     }
 
     ///expect a specific Content type, the decoded content will be available in the closure block
-    public func expect<T: Decodable>(
+    func expect<T: Decodable>(
         file: StaticString = #file,
         line: UInt = #line,
         _ contentType: T.Type,
@@ -177,7 +178,7 @@ public final class HummingbirdSpec {
     }
 
     /// expect a byte buffer as a response
-    public func expect(
+    func expect(
         file: StaticString = #file,
         line: UInt = #line,
         closure: @escaping ((HBXCTResponse) throws -> Void)
@@ -187,9 +188,10 @@ public final class HummingbirdSpec {
         })
         return self
     }
-    
-    // MARK: - json
+}
 
+
+public extension HummingbirdSpec {
     func json<T: Encodable, U: Decodable>(
         encoder: JSONEncoder? = nil,
         decoder: JSONDecoder? = nil,
@@ -239,10 +241,10 @@ public final class HummingbirdSpec {
                 block(object)
             }
     }
-    
-    // MARK: - test
-    
-    public func test(
+}
+
+public extension HummingbirdSpec {
+    func test(
         file: StaticString = #file,
         line: UInt = #line
     ) throws {
