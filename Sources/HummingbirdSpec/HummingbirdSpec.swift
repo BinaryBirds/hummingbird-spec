@@ -2,6 +2,7 @@ import Foundation
 import NIO
 import XCTest
 import Hummingbird
+import HummingbirdFoundation
 import HummingbirdXCT
 
 private extension ByteBuffer {

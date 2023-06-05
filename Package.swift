@@ -18,11 +18,11 @@ let package = Package(
     targets: [
         .target(name: "HummingbirdSpec", dependencies: [
             .product(name: "Hummingbird", package: "hummingbird"),
+            .product(name: "HummingbirdFoundation", package: "hummingbird"),
             .product(name: "HummingbirdXCT", package: "hummingbird"),
         ]),
         .testTarget(name: "HummingbirdSpecTests", dependencies: [
             .target(name: "HummingbirdSpec"),
-            .product(name: "HummingbirdFoundation", package: "hummingbird"),
         ]),
     ]
 )
