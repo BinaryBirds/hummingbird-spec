@@ -1,6 +1,6 @@
-# hummingbird-spec
+# HummingbirdSpec
 
-Unit testing Hummingbird applications through declarative specifications.
+Unit testing for [Hummingbird](https://github.com/hummingbird-project/hummingbird) applications through declarative specifications.
 
 
 ## Install
@@ -8,7 +8,7 @@ Unit testing Hummingbird applications through declarative specifications.
 Add the repository as a dependency:
 
 ```swift
-.package(url: "https://github.com/feathercms/hummingbird-spec", from: "1.0.0"),
+.package(url: "https://github.com/binarybirds/hummingbird-spec", from: "1.0.0"),
 ```
 
 Add Spec to the target dependencies:

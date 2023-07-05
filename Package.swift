@@ -12,7 +12,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/hummingbird-project/hummingbird.git",
-            from: "1.4.0"
+            from: "1.6.0"
         ),
     ],
     targets: [
